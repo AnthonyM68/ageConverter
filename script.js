@@ -1,25 +1,13 @@
 // Écrivez ici votre script
 const btn = document.getElementById('button');
 const divAge = document.getElementById('age');
-
 const result = document.getElementById('result');
 let radios = document.forms["formA"].elements["choix"];
-
-
-const jrs = 365;
-const hrs = 24;
-const min = 1140;
-const sec = 144000;
-
-
 let age = '';
 
-for (radio in radios) {
-    radios[radio].onclick = function () {
-        theSwitch(this.value);   
-    }
-}
-function theSwitch(option){
+for (radio in radios) {radios[radio].onclick = function () { theSwitch(this.value);}}
+
+function theSwitch(option) {
     switch (option) {
         case 'option1':
             secondes(age);
@@ -35,35 +23,32 @@ function theSwitch(option){
             break;
     }
 }
+function lisibilite_nombre(num) {
+    let result = num.toLocaleString();
+    return result;
+}
 function secondes(age) {
-    age = (age * jrs) * min;
-    age = age * sec;
-    result.innerHTML = age;
-
+    result.innerHTML = lisibilite_nombre((age * 365) * 24 * 60 * 60);
 };
-
 function minutes(age) {
-    age = (age * jrs ) * min;
-    result.innerHTML = age;
-
+    result.innerHTML = lisibilite_nombre(((age * 365) * 24) * 60);
 };
-
 function heures(age) {
-    age = (age * jrs) * hrs;
-    result.innerHTML = age;
+    result.innerHTML = lisibilite_nombre((age * 365) * 24);
 
 };
-
 function jours(age) {
-    age = age * jrs;
-    result.innerHTML = age;
+    result.innerHTML = lisibilite_nombre(age * 365);
 };
-
 btn.addEventListener('click', function () {
     event.preventDefault();
     age = divAge.value;
-    let option = radios.value;
-    theSwitch(option);
+    if (age === '') {
+        result.setAttribute("style", "red");
+        result.innerHTML = "Veuillez indiquer votre âge SVP";
+    } else {
+        theSwitch(radios.value);
+    }
 });
 
 
