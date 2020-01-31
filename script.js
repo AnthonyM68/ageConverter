@@ -1,10 +1,7 @@
 // Écrivez ici votre script
 const btn = document.getElementById('button');
 const divAge = document.getElementById('age');
-const divJours = document.getElementById('inputJours');
-const divHeures = document.getElementById('inputHeures');
-const divMinutes = document.getElementById('inputMinutes');
-const divSecondes = document.getElementById('inputSecondes');
+
 const result = document.getElementById('result');
 let radios = document.forms["formA"].elements["choix"];
 
